@@ -11,36 +11,38 @@
         <div class="calculator">
             <form>
                 <div class="display">
-                    <input type="text" name="display">
+                    <input type="text" name="display" readonly>
+                    <!--readonly는 읽기 전용 속성. 이 속성을 쓰면 input 필드 안에 사용자가 직접 텍스트를 입력 및 수정하는 것이 불가능함. 계산기로써만 사용하게 하는 것.-->
+                </div>
+                <div><!--div 태그에 class='operator'를 줘서 스타일을 바꾸려고 했지만 되지 않았음. 챗 지피티로 왜 안 되는 건지 알아보기-->
+                    <input type="button" value="AC" onclick="display.value = ''" class="operator">
+                    <input type="button" value="DE" onclick="display.value = display.value.slice(0, -1)" class="operator"> <!--초기 코드엔 toString().을 썼지만 지운 이유: display 필드의 input type이 이미 text로 지정되어 있기 때문에 굳이 문자열로 변환할 필요가 없음. -->
+                    <input type="button" value="." onclick="display.value = '.'" class="operator">
+                    <input type="button" value="/" onclick="display.value += '/'" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="AC">
-                    <input type="button" value="DE">
-                    <input type="button" value=".">
-                    <input type="button" value="/">
+                    <input type="button" value="7" onclick="display.value += '7'">
+                    <input type="button" value="8" onclick="display.value += '8'">
+                    <input type="button" value="9" onclick="display.value += '9'">
+                    <input type="button" value="*" onclick="display.value += '*'" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="7">
-                    <input type="button" value="8">
-                    <input type="button" value="9">
-                    <input type="button" value="*">
+                    <input type="button" value="4" onclick="display.value += '4'">
+                    <input type="button" value="5" onclick="display.value += '5'">
+                    <input type="button" value="6" onclick="display.value += '6'">
+                    <input type="button" value="-" onclick="display.value += '-'" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="4">
-                    <input type="button" value="5">
-                    <input type="button" value="6">
-                    <input type="button" value="-">
+                    <input type="button" value="1" onclick="display.value += '1'">
+                    <input type="button" value="2" onclick="display.value += '2'">
+                    <input type="button" value="3" onclick="display.value += '3'">
+                    <input type="button" value="+" onclick="display.value += '+'" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="1">
-                    <input type="button" value="2">
-                    <input type="button" value="3">
-                    <input type="button" value="+">
-                </div>
-                <div>
-                    <input type="button" value="00">
-                    <input type="button" value="0">
-                    <input type="button" value="=" class="equal">
+                    <input type="button" value="00" onclick="display.value += '00'">
+                    <input type="button" value="0" onclick="display.value += '0'">
+                    <input type="button" value="=" onclick="display.value = eval(display.value)" class="equal operator">
+                    <!--eval은 속도가 느리고 보안에 취약하여 실무에서는 잘 쓰이지 않는 코드. eval 없이 계산기 만들 수 있는 방법 알아내서 개선하기-->
                 </div>
             </form>
         </div>
